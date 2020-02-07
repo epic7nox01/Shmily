@@ -107,7 +107,7 @@ class Shmily {
                 span.pos  {text-transform:lowercase; font-size:0.9em;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-                ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
+                ul.sents {font-size:0.5em;}
                 li.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
