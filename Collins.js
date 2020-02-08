@@ -70,7 +70,7 @@ class Shmily {
             let eng_tran = def.def_en;
             pos = pos ? `<span class="pos">${pos}</span>` : '';
             eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>` : '';
-            definition = `${pos}&nbsp<span class="tran">${eng_tran}</span>`;
+            definition = `${pos} <span class="tran">${eng_tran}</span>`;
 
             // make exmaple sentence segement
             if (def.ext && def.ext.length > 0 && maxexample > 0) {
