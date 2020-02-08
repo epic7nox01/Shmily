@@ -68,9 +68,9 @@ class Shmily {
             let definition = '';
             let pos = def.pos_en;
             let eng_tran = def.def_en;
-            pos = pos ? `<span id="pos">${pos}</span>` : '';
+            pos = pos ? `<span class="pos">${pos} </span>` : '';
             eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>` : '';
-            definition = `${pos}&nbsp<span class="tran">${eng_tran}</span>`;
+            definition = `${pos}<span class="tran">${eng_tran}</span>`;
 
             // make exmaple sentence segement
             if (def.ext && def.ext.length > 0 && maxexample > 0) {
@@ -104,7 +104,7 @@ class Shmily {
             <style>
                 span.star {color: #FFBB00;}
                 span.cet  {margin: 0 3px;padding: 0 3px;font-weight: normal;font-size: 0.8em;color: white;background-color: #5cb85c;border-radius: 3px;}
-                span#pos  {text-transform:lowercase;font-size:0.9em;color:white;padding:2px 0px; background-color:#0d47a1;border-radius:4px;}
+                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
