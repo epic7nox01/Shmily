@@ -1,12 +1,15 @@
 /* global api, hash */
-class Oxford {
+class enen_Oxford {
     constructor(options) {
+        this.token = '';
+        this.gtk = '';
         this.options = options;
         this.maxexample = 2;
         this.word = '';
     }
 
     async displayName() {
+        let locale = await api.locale();
         return 'Oxford';
     }
 
@@ -14,6 +17,19 @@ class Oxford {
     setOptions(options) {
         this.options = options;
         this.maxexample = options.maxexample;
+    }
+
+    async getToken() {
+        let homeurl = 'https://fanyi.baidu.com/';
+        let homepage = await api.fetch(homeurl);
+        let tmatch = /token: '(.+?)'/gi.exec(homepage);
+        if (!tmatch || tmatch.length < 2) return null;
+        let gmatch = /window.gtk = '(.+?)'/gi.exec(homepage);
+        if (!gmatch || gmatch.length < 2) return null;
+        return {
+            'token': tmatch[1],
+            'gtk': gmatch[1]
+        };
     }
 
     async findTerm(word) {
@@ -53,6 +69,13 @@ class Oxford {
         if (!word) return notes;
         let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh&simple_means_flag=3';
 
+        if (!this.token || !this.gtk) {
+            let common = await this.getToken();
+            if (!common) return [];
+            this.token = common.token;
+            this.gtk = common.gtk;
+        }
+
         let sign = hash(word, this.gtk);
         if (!sign) return;
 
@@ -61,10 +84,60 @@ class Oxford {
         try {
             data = JSON.parse(await api.fetch(dicturl));
             let oxford = getOxford(data);
-            return [].concat(oxford);
+            let bdsimple = oxford.length ? [] : getBDSimple(data); //Combine Youdao Concise English-Chinese Dictionary to the end.
+            let bstrans = oxford.length || bdsimple.length ? [] : getBDTrans(data); //Combine Youdao Translation (if any) to the end.
+            return [].concat(oxford, bdsimple, bstrans);
 
         } catch (err) {
             return [];
+        }
+
+        function getBDTrans(data) {
+            try {
+                if (data.dict_result && data.dict_result.length != 0) return [];
+                if (!data.trans_result || data.trans_result.data.length < 1) return [];
+                let css = '<style>.odh-expression {font-size: 1em!important;font-weight: normal!important;}</style>';
+                let expression = data.trans_result.data[0].src;
+                let definition = data.trans_result.data[0].dst;
+                return [{ css, expression, definitions: [definition] }];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function getBDSimple(data) {
+            try {
+                let simple = data.dict_result.simple_means;
+                let expression = simple.word_name;
+                if (!expression) return [];
+
+                let symbols = simple.symbols[0];
+                let reading_us = symbols.ph_am || '';
+                let reading = reading_us ? `us/${reading_us}/` : '';
+
+                let audios = [];
+                audios[0] = `http://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
+                audios[1] = `http://fanyi.baidu.com/gettts?lan=en&text=${encodeURIComponent(expression)}&spd=3&source=web`;
+
+                if (!symbols.parts || symbols.parts.length < 1) return [];
+                let definition = '<ul class="ec">';
+                for (const def of symbols.parts)
+                    if (def.means && def.means.length > 0) {
+                        let pos = def.part || def.part_name || '';
+                        pos = pos ? `<span class="pos simple">${pos}</span>` : '';
+                        definition += `<li class="ec">${pos}<span class="ec_chn">${def.means.join()}</span></li>`;
+                    }
+                definition += '</ul>';
+                let css = `<style>
+                ul.ec, li.ec {margin:0; padding:0;}
+                span.simple {background-color: #999!important}
+                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
+                </style>`;
+                notes.push({ css, expression, reading, definitions: [definition], audios });
+                return notes;
+            } catch (error) {
+                return [];
+            }
         }
 
         function getOxford(data) {
