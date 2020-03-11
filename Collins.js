@@ -7,7 +7,7 @@ class Shmily {
     }
 
     async displayName() {
-        return 'Shmily';
+        return 'Collins';
     }
 
     setOptions(options) {
@@ -86,7 +86,7 @@ class Shmily {
             definitions.push(definition);
         }
 
-        let css = Shmily.renderCSS();
+        let css = this.renderCSS();
         notes.push({
             css,
             expression,
