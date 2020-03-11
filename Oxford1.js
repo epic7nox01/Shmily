@@ -1,34 +1,19 @@
 /* global api, hash */
 class Oxford {
     constructor(options) {
-        this.token = '';
-        this.gtk = '';
         this.options = options;
         this.maxexample = 2;
         this.word = '';
     }
 
     async displayName() {
-        return 'Oxford 7';
+        return 'Oxford 1';
     }
 
 
     setOptions(options) {
         this.options = options;
         this.maxexample = options.maxexample;
-    }
-
-    async getToken() {
-        let homeurl = 'https://fanyi.baidu.com/';
-        let homepage = await api.fetch(homeurl);
-        let tmatch = /token: '(.+?)'/gi.exec(homepage);
-        if (!tmatch || tmatch.length < 2) return null;
-        let gmatch = /window.gtk = '(.+?)'/gi.exec(homepage);
-        if (!gmatch || gmatch.length < 2) return null;
-        return {
-            'token': tmatch[1],
-            'gtk': gmatch[1]
-        };
     }
 
     async findTerm(word) {
