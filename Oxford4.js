@@ -33,8 +33,16 @@ class Oxford {
 
     async findTerm(word) {
         this.word = word;
-        let deflection = await api.deinflect(word) || [];
-        let promises = [word, deflection].map(x => this.findOxford(x));
+        let list = [];
+        let word_stem = await api.deinflect(word) || [];
+        if (word.toLowerCase() != word) {
+            let lowercase = word.toLowerCase();
+            let lowercase_stem = await api.deinflect(lowercase) || [];
+            list = [word, word_stem, lowercase, lowercase_stem];
+        } else {
+            list = [word, word_stem];
+        }
+        let promises = list.map((item) => this.findOxford(item));
         let results = await Promise.all(promises);
         return [].concat(...results).filter(x => x);
     }
@@ -167,6 +175,7 @@ class Oxford {
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#1666BF; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
+                span.eng_sent {font-style:italic;color:#00f}
             </style>`;
         return css;
     }
