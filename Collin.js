@@ -108,9 +108,9 @@ class Shmily {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;color:#000}
                 ul.sents {list-style:none;margin:0px;padding:0px}
-                li.sent  {color:#00f;font-style:italic;font-size:small}
+                li.sent  {color:#00f;font-style:italic}
                 li.sent::before {content:"» ";color:grey;}
-                span.eng_sent {margin-right:3px}
+                span.eng_sent {margin-right:3px;font-size:small}
             </style>`;
         return css;
     }
