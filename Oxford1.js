@@ -9,7 +9,10 @@ class encn_Oxford {
     }
 
     async displayName() {
-        return 'Oxford 4';
+        let locale = await api.locale();
+        if (locale.indexOf('CN') != -1) return '牛津英汉双解';
+        if (locale.indexOf('TW') != -1) return '牛津英汉双解';
+        return 'Oxford EN->CN Dictionary 1';
     }
 
 
