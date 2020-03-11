@@ -196,7 +196,7 @@ class Oxford {
                         }
                     }
                 }
-                let css = this.renderCSS();
+                let css = Oxford.renderCSS();
                 notes.push({ css, expression, reading, definitions, audios });
                 return notes;
             } catch (error) {
