@@ -9,7 +9,7 @@ class Oxford {
     }
 
     async displayName() {
-        return 'Oxford 1';
+        return 'Oxford 3';
     }
 
 
@@ -66,7 +66,7 @@ class Oxford {
         const maxexample = this.maxexample;
         let notes = [];
         if (!word) return notes;
-        let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh&simple_means_flag=3';
+        let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=en&simple_means_flag=3';
 
         if (!this.token || !this.gtk) {
             let common = await this.getToken();
@@ -96,7 +96,6 @@ class Oxford {
                 if (!expression) return [];
 
                 let symbols = simple.symbols[0];
-                let reading_uk = symbols.ph_en || '';
                 let reading_us = symbols.ph_am || '';
                 let reading = reading_us ? `/${reading_us}/` : '';
 
@@ -161,7 +160,7 @@ class Oxford {
             <style>
                 div.dis {font-weight: bold;margin-bottom:3px;padding:0;}
                 span.eng_dis  {margin-right: 5px;}
-                span.pos  {text-transform:lowercase; font-size:0.9em;padding: 0px 4px 3px 4px; color:white; border-radius:4px;background-color: #0d47a1}
+                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 span.eng_sent {font-style:italic;color:#00f;list-style:square inside;}
