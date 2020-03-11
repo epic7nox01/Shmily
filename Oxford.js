@@ -58,7 +58,7 @@ class Oxford {
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
                     let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
-                    sentence += `<li class='sent'><span class='eng_sent'>${enText}</span><span class='chn_sent'>${def.chText}</span></li>`;
+                    sentence += `<li class='sent'><span class='eng_sent'>${enText}</span></li>`;
                 }
             }
             definition += sentence ? `<ul class="sents">${sentence}</ul>` : '';
