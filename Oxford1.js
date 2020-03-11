@@ -69,7 +69,7 @@ class encn_Oxford {
         const maxexample = this.maxexample;
         let notes = [];
         if (!word) return notes;
-        let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=vi&simple_means_flag=3';
+        let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=vie&simple_means_flag=3';
 
         if (!this.token || !this.gtk) {
             let common = await this.getToken();
