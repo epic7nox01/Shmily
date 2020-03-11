@@ -1,5 +1,5 @@
 /* global api, hash */
-class encn_Oxford {
+class Oxford {
     constructor(options) {
         this.token = '';
         this.gtk = '';
