@@ -9,8 +9,7 @@ class Oxford {
     }
 
     async displayName() {
-        let locale = await api.locale();
-        return 'Oxford 3';
+        return 'Oxford';
     }
 
 
@@ -54,7 +53,7 @@ class Oxford {
                 //if (def.tag == 'xrs')
                 //    definition += `<span class='tran'><span class='eng_tran'>${def.data[0].data[0].text}</span></span>`;
                 if (def.tag == 'd' || def.tag == 'ud')
-                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span><span class='chn_tran'>${def.chText}</span></span>`;
+                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span></span>`;
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
                     let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
@@ -150,7 +149,7 @@ class Oxford {
                 let symbols = simple.symbols[0];
                 let reading_uk = symbols.ph_en || '';
                 let reading_us = symbols.ph_am || '';
-                let reading = reading_uk && reading_us ? `uk[${reading_uk}] us[${reading_us}]` : '';
+                let reading = reading_us ? `/${reading_us}/` : '';
 
                 let audios = [];
                 audios[0] = `https://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
@@ -169,7 +168,7 @@ class Oxford {
                                 pos = `<span class='pos'>${group.p_text}</span>`;
                             }
                             if (group.tag == 'd') {
-                                definition += pos + `<span class='tran'><span class='eng_tran'>${group.enText}</span><span class='chn_tran'>${group.chText}</span></span>`;
+                                definition += pos + `<span class='tran'><span class='eng_tran'>${group.enText}</span></span>`;
                                 definitions.push(definition);
                             }
 
@@ -186,7 +185,7 @@ class Oxford {
 
                             if (group.tag == 'sd-g' || group.tag == 'ids-g' || group.tag == 'pvs-g') {
                                 for (const item of group.data) {
-                                    if (item.tag == 'sd') definition = `<div class="dis"><span class="eng_dis">${item.enText}</span><span class="chn_dis">${item.chText}</span></div>` + definition;
+                                    if (item.tag == 'sd') definition = `<div class="dis"><span class="eng_dis">${item.enText}</span></div>` + definition;
                                     let defs = [];
                                     if (item.tag == 'n-g' || item.tag == 'id-g' || item.tag == 'pv-g') defs = item.data;
                                     if (item.tag == 'vrs' || item.tag == 'xrs') defs = item.data[0].data;
@@ -221,11 +220,9 @@ class Oxford {
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-                span.chn_tran {color:#0d47a1;}
                 ul.sents {font-size:0.9em; list-style:square inside; margin:3px 0;padding:5px;background:rgba(13,71,161,0.1); border-radius:5px;}
                 li.sent  {margin:0; padding:0;}
                 span.eng_sent {margin-right:5px;}
-                span.chn_sent {color:#0d47a1;}
             </style>`;
         return css;
     }
