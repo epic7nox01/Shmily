@@ -1,5 +1,5 @@
 /* global api, hash */
-class Oxford {
+class encn_Oxford {
     constructor(options) {
         this.token = '';
         this.gtk = '';
@@ -9,7 +9,7 @@ class Oxford {
     }
 
     async displayName() {
-        return 'Oxford';
+        return 'Oxford EN->EN Dictionary 1';
     }
 
 
