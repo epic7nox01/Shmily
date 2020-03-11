@@ -9,7 +9,7 @@ class Oxford {
     }
 
     async displayName() {
-        return 'Oxford 5';
+        return 'Oxford 1';
     }
 
 
@@ -160,12 +160,8 @@ class Oxford {
         let css = `
             <style>
                 div.dis {font-weight: bold;margin-bottom:3px;padding:0;}
-                span.grammar,
-                span.informal   {margin: 0 2px;color: #0d47a1;}
-                span.complement {margin: 0 2px;font-weight: bold;}
-                div.idmphrase {font-weight: bold;margin: 0;padding: 0;}
                 span.eng_dis  {margin-right: 5px;}
-                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#0d47a1; border-radius:3px;}
+                span.pos  {text-transform:lowercase; font-size:0.9em;padding: 0px 4px 3px 4px; color:white; border-radius:4px;background-color: #0d47a1}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 span.eng_sent {font-style:italic;color:#00f;list-style:square inside;}
