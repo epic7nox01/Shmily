@@ -86,7 +86,7 @@ class Shmily {
             definitions.push(definition);
         }
 
-        let css = this.renderCSS();
+        let css = Shmily.renderCSS();
         notes.push({
             css,
             expression,
