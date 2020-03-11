@@ -113,7 +113,7 @@ class Oxford {
                 let symbols = simple.symbols[0];
                 let reading_uk = symbols.ph_en || '';
                 let reading_us = symbols.ph_am || '';
-                let reading = reading_uk && reading_us ? `uk[${reading_uk}] us[${reading_us}]` : '';
+                let reading = reading_us ? `/${reading_us}/` : '';
 
                 let audios = [];
                 audios[0] = `http://fanyi.baidu.com/gettts?lan=uk&text=${encodeURIComponent(expression)}&spd=3&source=web`;
@@ -196,7 +196,7 @@ class Oxford {
                         }
                     }
                 }
-                let css = encn_Oxford.renderCSS();
+                let css = this.renderCSS();
                 notes.push({ css, expression, reading, definitions, audios });
                 return notes;
             } catch (error) {
