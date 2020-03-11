@@ -109,7 +109,7 @@ class Shmily {
                 span.eng_tran {margin-right:3px; padding:0;}
                 ul.sents {font-size:95%; list-style:none;margin:0px;padding:0px}
                 li.sent  {color:#00f;font-style:italic}
-                li.sent::before {content:"» ";color:grey;margin-left:5px}
+                li.sent::before {content:"» ";color:grey;}
                 span.eng_sent {margin-right:5px;}
             </style>`;
         return css;
