@@ -104,13 +104,13 @@ class Shmily {
             <style>
                 span.star {color: #FFBB00;}
                 span.cet  {margin: 0 3px;padding: 0 3px;font-weight: normal;font-size: 0.8em;color: white;background-color: #5cb85c;border-radius: 3px;}
-                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#1666BF; border-radius:3px;}
+                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:3px; padding:2px 4px; color:white; background-color:#1666BF; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-                ul.sents {font-size:95%; list-style:none;margin:0px;padding:0px}
+                ul.sents {list-style:none;margin:0px;padding:0px}
                 li.sent  {color:#00f;font-style:italic}
                 li.sent::before {content:"» ";color:grey;}
-                span.eng_sent {margin-right:5px;}
+                span.eng_sent {margin-right:3px;}
             </style>`;
         return css;
     }
