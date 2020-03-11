@@ -42,7 +42,7 @@ class Oxford {
         } else {
             list = [word, word_stem];
         }
-        let promises = list.map((item) => this.findCollins(item));
+        let promises = list.map((item) => this.findOxford(item));
         let results = await Promise.all(promises);
         return [].concat(...results).filter(x => x);
     }
