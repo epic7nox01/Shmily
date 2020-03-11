@@ -68,7 +68,7 @@ class Shmily {
             let definition = '';
             let pos = def.pos_en;
             let eng_tran = def.def_en;
-            pos = pos ? `<span class="pos">${pos}</span>` : '';
+            pos = pos ? `<span id="pos">${pos}</span>` : '';
             eng_tran = eng_tran ? `<span class="eng_tran">${eng_tran.replace(RegExp(expression, 'gi'),`<b>${expression}</b>`)}</span>` : '';
             definition = `${pos} <span class="tran">${eng_tran}</span>`;
 
@@ -104,7 +104,7 @@ class Shmily {
             <style>
                 span.star {color: #FFBB00;}
                 span.cet  {margin: 0 3px;padding: 0 3px;font-weight: normal;font-size: 0.8em;color: white;background-color: #5cb85c;border-radius: 3px;}
-                span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:3px;padding: 0px 4px 3px 4px; color:white; background-color:#1666BF; border-radius:4px;}
+                span#pos  {text-transform:lowercase; font-size:0.9em; margin-right:3px;padding: 0px 4px 3px 4px; color:white; background-color:#1666BF; border-radius:4px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;color:#000}
                 ul.sents {list-style:none;margin:0px;padding:0px}
