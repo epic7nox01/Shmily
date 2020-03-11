@@ -9,7 +9,7 @@ class Oxford {
     }
 
     async displayName() {
-        return 'Oxford 1';
+        return 'Oxford 3';
     }
 
 
@@ -57,10 +57,10 @@ class Oxford {
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
                     let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
-                    sentence += `<span style="color:grey">» </span><span class='eng_sent'>${enText}</span>`;
+                    sentence += `<span style="color:grey">» </span><span class='eng_sent'>${enText}</span><br>`;
                 }
             }
-            definition += sentence ? `<ul class="sents">${sentence}</ul>` : '';
+            definition += sentence ? `<span class="sents">${sentence}</span>` : '';
             return definition;
         }
         const maxexample = this.maxexample;
@@ -220,8 +220,7 @@ class Oxford {
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
                 span.sents {font-style:italic;color:#00f;list-style:square inside; margin:3px 0;padding:5px;}
-                li.sent  {margin:0; padding:0;}
-                span.eng_sent {margin-right:5px;}
+                span.eng_sent {margin-right:0px;}
             </style>`;
         return css;
     }
