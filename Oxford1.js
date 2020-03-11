@@ -1,5 +1,5 @@
 /* global api, hash */
-class encn_Oxford {
+class Oxford {
     constructor(options) {
         this.token = '';
         this.gtk = '';
@@ -10,9 +10,7 @@ class encn_Oxford {
 
     async displayName() {
         let locale = await api.locale();
-        if (locale.indexOf('CN') != -1) return '牛津英汉双解';
-        if (locale.indexOf('TW') != -1) return '牛津英汉双解';
-        return 'Oxford EN->CN Dictionary';
+        return 'Oxford 1';
     }
 
 
