@@ -1,15 +1,13 @@
 /* global api, hash */
 class Oxford {
     constructor(options) {
-        this.token = '';
-        this.gtk = '';
         this.options = options;
         this.maxexample = 2;
         this.word = '';
     }
 
     async displayName() {
-        return 'Oxford';
+        return 'Oxford 3';
     }
 
 
@@ -18,18 +16,6 @@ class Oxford {
         this.maxexample = options.maxexample;
     }
 
-    async getToken() {
-        let homeurl = 'https://fanyi.baidu.com/';
-        let homepage = await api.fetch(homeurl);
-        let tmatch = /token: '(.+?)'/gi.exec(homepage);
-        if (!tmatch || tmatch.length < 2) return null;
-        let gmatch = /window.gtk = '(.+?)'/gi.exec(homepage);
-        if (!gmatch || gmatch.length < 2) return null;
-        return {
-            'token': tmatch[1],
-            'gtk': gmatch[1]
-        };
-    }
 
     async findTerm(word) {
         this.word = word;
@@ -68,17 +54,10 @@ class Oxford {
         if (!word) return notes;
         let base = 'https://fanyi.baidu.com/v2transapi?from=en&to=zh&simple_means_flag=3';
 
-        if (!this.token || !this.gtk) {
-            let common = await this.getToken();
-            if (!common) return [];
-            this.token = common.token;
-            this.gtk = common.gtk;
-        }
-
-        let sign = hash(word, this.gtk);
+        let sign = hash(word);
         if (!sign) return;
 
-        let dicturl = base + `&query=${word}&sign=${sign}&token=${this.token}`;
+        let dicturl = base + `&query=${word}&sign=${sign}`;
         let data = '';
         try {
             data = JSON.parse(await api.fetch(dicturl));
