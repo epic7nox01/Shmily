@@ -175,7 +175,7 @@ class Oxford {
                 span.pos  {text-transform:lowercase; font-size:0.9em; margin-right:5px; padding:2px 4px; color:white; background-color:#1666BF; border-radius:3px;}
                 span.tran {margin:0; padding:0;}
                 span.eng_tran {margin-right:3px; padding:0;}
-                span.eng_sent {font-style:italic;color:#00f}
+                span.eng_sent {font-style:italic;color:#00f;display:block}
             </style>`;
         return css;
     }
