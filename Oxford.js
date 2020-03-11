@@ -55,17 +55,17 @@ class Oxford {
             let sentence = '';
             let sentnum = 0;
             for (const def of defs) {
-                if (def.text) definition += `<span class='tran'><span class='eng_tran'>${def.text}</span></span>`;
+                if (def.text) definition += `<span class='tran'><span class='eng_tran'>${def.text}</span></span><br>`;
                 if (def.tag == 'id' || def.tag == 'pv')
                     definition += def.enText ? `<div class="idmphrase">${def.enText}</div>` : '';
                 //if (def.tag == 'xrs')
                 //    definition += `<span class='tran'><span class='eng_tran'>${def.data[0].data[0].text}</span></span>`;
                 if (def.tag == 'd' || def.tag == 'ud')
-                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span></span>`;
+                    definition += pos + `<span class='tran'><span class='eng_tran'>${def.enText}</span></span><br>`;
                 if (def.tag == 'x' && sentnum < maxexample) {
                     sentnum += 1;
                     let enText = def.enText.replace(RegExp(exp, 'gi'), `<b>${exp}</b>`);
-                    sentence += `<br><span style="color:grey">» </span><span class='eng_sent'>${enText}</span>`;
+                    sentence += `<span style="color:grey">» </span><span class='eng_sent'>${enText}</span><br>`;
                 }
             }
             definition += sentence ? `${sentence}` : '';
